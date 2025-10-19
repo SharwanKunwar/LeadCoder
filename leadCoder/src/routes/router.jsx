@@ -18,6 +18,7 @@ const router = createBrowserRouter([
       { path: "solution/:id", element: <SolutionAnalysis /> },
     ],
   },
+  
 ]);
 
 export default router;

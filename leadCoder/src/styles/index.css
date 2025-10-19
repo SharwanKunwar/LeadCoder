@@ -25,7 +25,7 @@ html, body {
 }
 
 .mastWhiteShadow {
-  box-shadow: 0px 1px 1px -1px rgba(192, 190, 190, 0.699), 
-              0px 1px 0px -1px rgba(147, 148, 148, 0.575), 
-              0px 0px 0px 1px rgba(112, 112, 112, 0.644);
+  box-shadow: 0px 1px 1px -1px rgba(148, 147, 147, 0.568), 
+              0px 1px 0px -1px rgba(112, 112, 112, 0.418), 
+              0px 0px 0px 1px rgba(88, 88, 88, 0.425);
 }
