@@ -1,2 +1,31 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
 
+html, body {
+    overflow: hidden;
+    color: white;
+    
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+
+.mastShadow {
+  box-shadow: 0px 2px 3px -1px rgba(0, 0, 0, 0.1), 
+              0px 1px 0px 0px rgba(25, 28, 33, 0.02), 
+              0px 0px 0px 1px rgba(25, 28, 33, 0.08);
+}
+
+.mastWhiteShadow {
+  box-shadow: 0px 1px 1px -1px rgba(192, 190, 190, 0.699), 
+              0px 1px 0px -1px rgba(147, 148, 148, 0.575), 
+              0px 0px 0px 1px rgba(112, 112, 112, 0.644);
+}
