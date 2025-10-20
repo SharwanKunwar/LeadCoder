@@ -38,11 +38,47 @@ function ConceptCatalog() {
                 <p className="text-sm text-gray-300 mb-4">{concept.description}</p>
               </div>
               <div>
-                <div className="flex justify-between">
-                <p className="bg-[#1F3757] px-2 rounded-full">{concept.category}</p>
-                <p>{concept.level}</p>
+                <div className="flex justify-between text-[14px]">
+                  {/* categories condition check  */}
+                {
+                  concept.category === "Fundamentals" && (
+                    <p className="bg-[#1F3757] px-5 py-0.5 font-bold rounded-full">{concept.category}</p>
+                  )
+                }
+                {
+                  concept.category === "OOP" && (
+                    <p className="bg-purple-400/50 px-5 py-0.5 font-bold rounded-full">{concept.category}</p>
+                  )
+                }
+                {
+                  concept.category === "Algorithms" && (
+                    <p className="bg-[#45342A] text-[#FDBA68] font-bold px-5 py-0.5 rounded-full">{concept.category}</p>
+                  )
+                }
+                {
+                  concept.category === "Data Structures" && (
+                    <p className="bg-[#1A4439] text-[#6AEFAC] font-bold px-5 py-0.5 rounded-full">{concept.category}</p>
+                  )
+                }
+
+                {/* level condition check  */}
+                {
+                  concept.level === "Beginner" && (
+                    <p className="text-[#86EF91] font-medium">{concept.level}</p>
+                  )
+                }
+                {
+                  concept.level === "Intermediate" && (
+                    <p className="text-[#FDD43B] font-medium">{concept.level}</p>
+                  )
+                }
+                {
+                  concept.level === "Advanced" && (
+                    <p className="text-[#FCA5A5] font-medium">{concept.level}</p>
+                  )
+                }
               </div>
-                <Button className="bg-red-400 w-full mt-5">Learn More</Button>
+                <Button size="large" className="!bg-sky-400 !border-none w-full mt-3 !font-bold !text-white">Learn More</Button>
               </div>
 
             </div>

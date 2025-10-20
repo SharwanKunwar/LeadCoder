@@ -1,9 +1,13 @@
-import React from 'react'
+
 import { Checkbox } from 'antd';
 import Radio from 'antd/es/radio/radio';
 import { Button } from "antd";
+import { useState } from 'react';
 
 function Sidebar() {
+
+  const [radioValue, setRadioValue] = useState("Beginner");
+
   return (
     <>
       <div className='bg-[#182430] h-[70vh] rounded-xl grid grid-cols-1 grid-row-1 gap-2 py-2 p-5 mastBrightShadow'>
@@ -34,9 +38,22 @@ function Sidebar() {
         {/* Difficulty Level */}
        <div className=" flex flex-col gap-3 text-white font-medium py-3">
           <h1 className="text-lg font-bold">Difficulty Level</h1>
-          <Radio className="custom-radio !text-white">Beginner</Radio>
-          <Radio className="custom-radio !text-white">Intermediate</Radio>
-          <Radio className="custom-radio !text-white">Advanced</Radio>
+              <Radio.Group
+                onChange={(e) => setRadioValue(e.target.value)}
+                value={radioValue}
+                className="!flex !flex-col !gap-1"
+              >
+                <Radio className="custom-radio !text-white" value="Beginner">
+                  Beginner
+                </Radio>
+                <Radio className="custom-radio !text-white" value="Intermediate">
+                  Intermediate
+                </Radio>
+                <Radio className="custom-radio !text-white" value="Advanced">
+                  Advanced
+                </Radio>
+              </Radio.Group>
+
         </div>
 
 
