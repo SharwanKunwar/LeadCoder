@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import 'remixicon/fonts/remixicon.css'
 
 export default function Navbar() {
+
+    const location = useLocation();
+    const currentPath = location.pathname
+
 return (
     <div className=" text-white text-center text-lg ">
         {/* holding left and right div  */}
@@ -23,11 +27,11 @@ return (
                         </Link>
                         
                         <Link to="concepts">
-                            <li className='tracking-tight text-white'>My Learning Path</li>
+                            <li style={{ color: currentPath === '/concepts' ? 'white' : 'gray' }} className='tracking-tight'>My Learning Path</li>
                         </Link>
 
-                        <Link to="projects">
-                            <li className='hover:text-white'>Catalog</li>
+                        <Link to="catalog">
+                            <li style={{ color: currentPath === '/problems' ? 'white' : 'gray' }} className='hover:text-white'>Problems</li>
                         </Link>
 
                         

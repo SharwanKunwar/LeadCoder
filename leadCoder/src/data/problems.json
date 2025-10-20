@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Marshal's Adventure with Variables",
+    "description": "Practice question to understand variables, data types, scope, and updating values in JavaScript.",
+    "instructions": "Marshal is preparing for a journey in CodeLand. He has some magic boxes (variables) to help him. Use the hints below to declare the variables, assign values, and print them in JavaScript.",
+    "hints": [
+      "Marshal’s name should be stored in a variable called heroName.",
+      "Marshal starts with 10 coins in heroCoins.",
+      "At first, he doesn’t have a sword. Store this in a boolean variable heroHasSword.",
+      "After finding a sword, update the variable.",
+      "He defeats a monster and earns 50 more coins.",
+      "Print all his final stats in the console: name, coins, sword status."
+    ],
+    "expectedOutput": [
+      "Marshal has a sword? true",
+      "Marshal now has 60 coins",
+      "Hero: Marshal",
+      "Coins: 60",
+      "Has Sword: true"
+    ],
+    "bonusQuestions": [
+      "What data types did you use for each variable?",
+      "What would happen if you tried to print heroHasSword before declaring it?",
+      "Make heroCoins a local variable inside a function. Can you print it outside? Why or why not?"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Sum of Two Numbers",
+    "description": "Write a function that returns the sum of two numbers.",
+    "examples": ["Input: 1, 2\\nOutput: 3", "Input: 5, 7\\nOutput: 12"],
+    "testCases": ["sum(1, 2) => 3", "sum(5, 7) => 12"]
+  },
+  {
+    "id": 3,
+    "title": "Multiply Numbers",
+    "description": "Write a function that multiplies two numbers.",
+    "examples": ["Input: 2, 3\\nOutput: 6", "Input: 4, 5\\nOutput: 20"],
+    "testCases": ["multiply(2, 3) => 6", "multiply(4, 5) => 20"]
+  }
+]

@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import 'remixicon/fonts/remixicon.css'
 
 export default function Navbar() {
+    const location = useLocation();
+    const currentPath = location.pathname
+    
+    
 return (
     <div className=" text-white text-center text-lg ">
         {/* holding left and right div  */}
@@ -15,18 +19,19 @@ return (
                 <nav className=" flex justify-center items-center text-neutral-400">
                     <ul className="flex justify-center items-center gap-5 ">
                         <Link to="/">
-                            <li>Dashboard</li>
+                            <li style={{ color: currentPath === '/' ? 'white' : 'gray' }} >Dashboard </li>
+
                         </Link>
                         <Link to="concepts">
-                            <li>Concepts</li>
+                            <li style={{ color: currentPath === '/concepts' ? 'white' : 'gray' }}>Concepts</li>
                         </Link>
 
                         <Link to="projects">
-                            <li>Projects</li>
+                            <li style={{ color: currentPath === '/projects' ? 'white' : 'gray' }}>Projects</li>
                         </Link>
 
                         <Link to="community">
-                            <li>Community</li>
+                            <li style={{ color: currentPath === '/community' ? 'white' : 'gray' }}>Community</li>
                         </Link>
                     </ul>
                 </nav>

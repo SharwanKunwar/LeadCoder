@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@tailwindcss/vite": "^4.1.14",
     "antd": "^5.27.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-pdf": "^10.2.0",
     "react-router-dom": "^7.9.4",
+    "react-select": "^5.10.2",
     "remixicon": "^4.7.0",
     "tailwindcss": "^4.1.14"
   },
