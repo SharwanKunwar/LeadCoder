@@ -39,44 +39,41 @@ function ConceptCatalog() {
               </div>
               <div>
                 <div className="flex justify-between text-[14px]">
-                  {/* categories condition check  */}
-                {
-                  concept.category === "Fundamentals" && (
-                    <p className="bg-[#1F3757] px-5 py-0.5 font-bold rounded-full">{concept.category}</p>
-                  )
-                }
-                {
-                  concept.category === "OOP" && (
-                    <p className="bg-purple-400/50 px-5 py-0.5 font-bold rounded-full">{concept.category}</p>
-                  )
-                }
-                {
-                  concept.category === "Algorithms" && (
-                    <p className="bg-[#45342A] text-[#FDBA68] font-bold px-5 py-0.5 rounded-full">{concept.category}</p>
-                  )
-                }
-                {
-                  concept.category === "Data Structures" && (
-                    <p className="bg-[#1A4439] text-[#6AEFAC] font-bold px-5 py-0.5 rounded-full">{concept.category}</p>
-                  )
-                }
+                   {/* Category */}
+                  {concept.category && (
+                    <p
+                      className={`px-4 py-1 font-bold rounded-full ${
+                        concept.category === "Fundamentals"
+                          ? "bg-[#1F3757]"
+                          : concept.category === "OOP"
+                          ? "bg-purple-400/50"
+                          : concept.category === "Algorithms"
+                          ? "bg-[#45342A] text-[#FDBA68]"
+                          : concept.category === "Data Structures"
+                          ? "bg-[#1A4439] text-[#6AEFAC]"
+                          : "bg-gray-400"
+                      }`}
+                    >
+                      {concept.category}
+                    </p>
+                  )}
 
-                {/* level condition check  */}
-                {
-                  concept.level === "Beginner" && (
-                    <p className="text-[#86EF91] font-medium">{concept.level}</p>
-                  )
-                }
-                {
-                  concept.level === "Intermediate" && (
-                    <p className="text-[#FDD43B] font-medium">{concept.level}</p>
-                  )
-                }
-                {
-                  concept.level === "Advanced" && (
-                    <p className="text-[#FCA5A5] font-medium">{concept.level}</p>
-                  )
-                }
+                {/* Level */}
+                {concept.level && (
+                  <p
+                    className={`font-medium ${
+                      concept.level === "Beginner"
+                        ? "text-[#86EF91]"
+                        : concept.level === "Intermediate"
+                        ? "text-[#FDD43B]"
+                        : concept.level === "Advanced"
+                        ? "text-[#FCA5A5]"
+                        : "text-white"
+                    }`}
+                  >
+                    {concept.level}
+                  </p>
+                )}
               </div>
                 <Button size="large" className="!bg-sky-400 !border-none w-full mt-3 !font-bold !text-white">Learn More</Button>
               </div>
