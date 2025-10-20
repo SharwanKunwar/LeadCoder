@@ -1,6 +1,5 @@
-import React from "react";
+
 import MainLayout from "../layouts/MainLayout";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import conceptsData from "../data/concepts.json"; // import JSON
 import { Button } from "antd";
@@ -22,8 +21,8 @@ function ConceptCatalog() {
       <div className="h-[50px] flex justify-between items-start">
         <p className="font-medium">Showing 6 concepts</p>
         <div className="flex justify-center items-center gap-3">
-          <Button></Button>
-          <Button></Button>
+          <Button>a</Button>
+          <Button>a</Button>
         </div>
       </div>
       <div className="h-[88%]">
