@@ -12,9 +12,10 @@ function ConceptCatalog() {
   // Calculate current cards
   const indexOfLast = currentPage * cardsPerPage;
   const indexOfFirst = indexOfLast - cardsPerPage;
-  const currentCards = conceptsData.slice(indexOfFirst, indexOfLast);
+  const currentCards = (conceptsData || []).slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil((conceptsData || []).length / cardsPerPage);
 
-  const totalPages = Math.ceil(conceptsData.length / cardsPerPage);
+  console.log(totalPages);
 
   return (
     <MainLayout>
@@ -38,10 +39,42 @@ function ConceptCatalog() {
               </div>
               <div>
                 <div className="flex justify-between text-[14px]">
-                   {/* Category */}
-                 
+                  {/* Category */}
+                  {concept.category && (
+                    <p
+                      className={`px-4 py-1 font-bold rounded-full ${
+                        concept.category === "Fundamentals"
+                          ? "bg-[#1F3757]"
+                          : concept.category === "OOP"
+                          ? "bg-purple-400/50"
+                          : concept.category === "Algorithms"
+                          ? "bg-[#45342A] text-[#FDBA68]"
+                          : concept.category === "Data Structures"
+                          ? "bg-[#1A4439] text-[#6AEFAC]"
+                          : "bg-gray-400"
+                      }`}
+                    >
+                      {concept.category}
+                    </p>
+                  )}
 
-                {/* Level */}
+
+                  {/* Level */}
+                  {concept.level && (
+                  <p
+                    className={`font-medium ${
+                      concept.level === "Beginner"
+                        ? "text-[#86EF91]"
+                        : concept.level === "Intermediate"
+                        ? "text-[#FDD43B]"
+                        : concept.level === "Advanced"
+                        ? "text-[#FCA5A5]"
+                        : "text-white"
+                    }`}
+                  >
+                    {concept.level}
+                  </p>
+                )}
                 
               </div>
                 <Button size="large" className="!bg-sky-400 !border-none w-full mt-3 !font-bold !text-white">Learn More</Button>
@@ -58,9 +91,9 @@ function ConceptCatalog() {
             <button
               key={i}
               onClick={() => setCurrentPage(i + 1)}
-              className={`w-8 h-8 rounded-md ${
-                currentPage === i + 1 ? "bg-indigo-500" : "bg-gray-400"
-              }`}
+              className={`w-8 h-8 rounded-md ${ currentPage === i + 1 ? "bg-indigo-500" : "bg-gray-400"}`}
+              type={currentPage === i + 1 ? "primary" : "default"}
+
             >
               {i + 1}
             </button>
