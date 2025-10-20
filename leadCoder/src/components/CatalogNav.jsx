@@ -19,15 +19,15 @@ return (
                 <nav className=" flex justify-center items-center text-neutral-400">
                     <ul className="flex justify-center items-center gap-5 ">
                         <Link to="/">
-                            <li>Home</li>
+                            <li className='hover:text-white'>Home</li>
                         </Link>
                         
                         <Link to="concepts">
-                            <li className='tracking-tight'>My Learning Path</li>
+                            <li className='tracking-tight text-white'>My Learning Path</li>
                         </Link>
 
                         <Link to="projects">
-                            <li>Catalog</li>
+                            <li className='hover:text-white'>Catalog</li>
                         </Link>
 
                         

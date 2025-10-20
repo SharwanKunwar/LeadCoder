@@ -10,7 +10,7 @@ const MainLayout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col">
       {/* <CatalogNav /> */}
-      <div className=" px-20 my-3">
+      <div className=" px-20 my-2 flex flex-col gap-3">
         <h1 className="text-4xl">Concept Catalog</h1>
         <p>Explore Programming concepts to build your skills.</p>
       </div>

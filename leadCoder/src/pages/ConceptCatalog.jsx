@@ -1,31 +1,73 @@
-import React from 'react'
-import MainLayout from '../layouts/MainLayout'
-import { Link } from 'react-router-dom'
+import React from "react";
+import MainLayout from "../layouts/MainLayout";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import conceptsData from "../data/concepts.json"; // import JSON
+import { Button } from "antd";
+
 
 function ConceptCatalog() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const cardsPerPage = 6;
+
+  // Calculate current cards
+  const indexOfLast = currentPage * cardsPerPage;
+  const indexOfFirst = indexOfLast - cardsPerPage;
+  const currentCards = conceptsData.slice(indexOfFirst, indexOfLast);
+
+  const totalPages = Math.ceil(conceptsData.length / cardsPerPage);
+
   return (
     <MainLayout>
-      <div className='h-[88%]'>
-        <div className=' h-[50px] flex justify-between items-center my-5'>
-          <h1>Showing 6 concepts</h1>
-          <div className='flex gap-3'>
-            <button>view</button><button>view</button>
-          </div>
+      <div className="h-[50px] flex justify-between items-start">
+        <p className="font-medium">Showing 6 concepts</p>
+        <div className="flex justify-center items-center gap-3">
+          <Button></Button>
+          <Button></Button>
         </div>
-        <div className='grid grid-cols-3 grid-row-3 gap-5'>
-          <div className='bg-white h-[200px] rounded-md'>card</div>
-          <div className='bg-white h-[200px] rounded-md'>card</div>
-          <div className='bg-white h-[200px] rounded-md'>card</div>
-          <div className='bg-white h-[200px] rounded-md'>card</div>
-          <div className='bg-white h-[200px] rounded-md'>card</div>
-          <div className='bg-white h-[200px] rounded-md'>card</div>
+      </div>
+      <div className="h-[88%]">
+        <div className="grid grid-cols-3 gap-6">
+          {currentCards.map((concept) => (
+            <div
+              key={concept.id}
+              className="bg-white/10 h-[27vh] backdrop-blur-lg border border-white/20 rounded-xl p-5 text-white hover:scale-105 transition-transform duration-300 shadow-md flex flex-col justify-between"
+            >
+              <div>
+                <h2 className="text-lg font-semibold mb-2">{concept.title}</h2>
+                <p className="text-sm text-gray-300 mb-4">{concept.description}</p>
+              </div>
+              <div>
+                <div className="flex justify-between">
+                <p className="bg-[#1F3757] px-2 rounded-full">{concept.category}</p>
+                <p>{concept.level}</p>
+              </div>
+                <Button className="bg-red-400 w-full mt-5">Learn More</Button>
+              </div>
+
+            </div>
+          ))}
         </div>
 
-        <div className=' h-[60px] flex justify-center items-center'>1 2 3 4 ....</div>
-          
+        {/* Pagination */}
+        <div className="flex justify-center gap-3 mt-6 text-white">
+          <Button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}>prev</Button>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`w-8 h-8 rounded-md ${
+                currentPage === i + 1 ? "bg-indigo-500" : "bg-gray-400"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <Button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}>Next</Button>
+        </div>
       </div>
     </MainLayout>
-  )
+  );
 }
 
-export default ConceptCatalog
+export default ConceptCatalog;

@@ -29,3 +29,59 @@ html, body {
               0px 1px 0px -1px rgba(112, 112, 112, 0.418), 
               0px 0px 0px 1px rgba(88, 88, 88, 0.425);
 }
+
+.mastBrightShadow {
+  box-shadow: 0px 1px 1px -1px rgba(148, 147, 147, 0.185), 
+              0px 1px 0px -1px rgba(182, 178, 178, 0.219), 
+              0px 0px 0px 1px rgba(196, 193, 193, 0.329);
+}
+
+
+/* 💜 Default (unchecked) state */
+.custom-checkbox .ant-checkbox-inner {
+  background-color: #233648 !important; /* Tailwind purple-500 */
+  border-color: #233648 !important;
+}
+
+/* 🟡 Checked state */
+.custom-checkbox .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #3B82F6 !important; /* Tailwind yellow-400 */
+  border-color: #3B82F6 !important;
+}
+
+/* ✨ Optional: hover & focus effect */
+.custom-checkbox .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.custom-checkbox .ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: #233648 !important;
+}
+
+/* -------------------------- */
+
+/* Default radio look */
+.custom-radio .ant-radio-inner {
+  border: 2px solid#233648 !important; /* purple border */
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.custom-radio:hover .ant-radio-inner {
+  border-color: #233648 !important;
+  box-shadow: 0 0 6px rgba(99, 102, 241, 0.5);
+}
+
+/* ✅ When checked */
+.custom-radio .ant-radio-checked .ant-radio-inner {
+  background-color: #233648 !important;
+  border: 2px solid #6366f1 !important; /* 👈 2px border here */
+}
+
+/* Inner dot (white) */
+.custom-radio .ant-radio-inner::after {
+  background-color: #6366f1 !important;
+}
+
+/* Label text color */
+.custom-radio .ant-radio-wrapper {
+  color: #e5e7eb !important;
+}

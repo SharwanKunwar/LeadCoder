@@ -1,0 +1,15 @@
+[
+  { "id": 1, "title": "Variables & Data Types", "description": "Learn how to store values with variables and use different data types.", "category": "Fundamentals" },
+  { "id": 2, "title": "Control Structures", "description": "Control program flow using if-else, loops, and switch statements.", "category": "Fundamentals" },
+  { "id": 3, "title": "Functions", "description": "Write reusable code blocks with parameters and return values.", "category": "Fundamentals" },
+  { "id": 4, "title": "Objects & Classes", "description": "Learn object-oriented concepts like classes, objects, and methods.", "category": "OOP" },
+  { "id": 5, "title": "Recursion", "description": "Understand functions calling themselves to solve problems elegantly.", "category": "Algorithms" },
+  { "id": 6, "title": "Algorithms", "description": "Study step-by-step methods for solving problems and common algorithms.", "category": "Algorithms" },
+  { "id": 7, "title": "Data Structures", "description": "Organize data efficiently using arrays, lists, stacks, and queues.", "category": "Data Structures" },
+  { "id": 8, "title": "Sorting & Searching", "description": "Sort and search data efficiently using linear, binary, and other methods.", "category": "Algorithms" },
+  { "id": 9, "title": "Error Handling & Exceptions", "description": "Handle errors gracefully to keep your program running smoothly.", "category": "OOP" },
+  { "id": 10, "title": "File I/O", "description": "Read and write files, handling text and binary formats effectively.", "category": "Fundamentals" },
+  { "id": 11, "title": "Recursion vs Iteration", "description": "Compare recursive and iterative solutions and their pros and cons.", "category": "Algorithms" },
+  { "id": 12, "title": "Memory Management", "description": "Learn how programs manage memory and optimize resource usage.", "category": "Data Structures" }
+]
+
