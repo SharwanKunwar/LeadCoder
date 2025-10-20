@@ -16,7 +16,7 @@ function Sidebar() {
         <div className=' h-[10vh] flex flex-col justify-center gap-3'>
           <h1 className='font-medium'>Find Concepts</h1>
           <div className="bg-[#233648] rounded-lg w-full h-[35px] flex justify-start items-center  mastBrightShadow focus-within:border border-white">
-                    <div className=" rounded-full pl-2 w-[50px] h-[50px] flex justify-center items-center"><i className="ri-search-line text-[#8B8D93"></i></div>
+                    <div className=" rounded-full pl-2 w-[50px] h-[50px] flex justify-center items-center"><i className="ri-search-line text-[#8B8D93]"></i></div>
                     <div>
                         <input type="text" placeholder='Search' className='border-none outline-none'/>
                     </div>
