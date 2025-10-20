@@ -34,7 +34,7 @@ return (
             {/* right div  */}
             <div className="flex justify-center items-center gap-7 text-[#8B8D93]">
                 <div className="bg-[#233648] rounded-lg w-[300px] h-[40px] flex justify-start items-center gap-3 mastWhiteShadow">
-                    <div className=" rounded-full pl-3 w-[50px] h-[50px] flex justify-center items-center"><i className="ri-search-line text-[#8B8D93"></i></div>
+                    <div className=" rounded-full pl-3 w-[50px] h-[50px] flex justify-center items-center"><i className="ri-search-line text-[#8B8D93]"></i></div>
                     <div>
                         <input type="text" placeholder='Search' className='border-none outline-none'/>
                     </div>
