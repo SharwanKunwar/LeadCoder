@@ -16,20 +16,20 @@ function Dashboard() {
           <div className='mt-10 h-[50vh] py-1 px-1 overflow-y-scroll no-scrollbar'>
             <h1 className='text-white text-2xl font-medium'>Contunue Learning</h1>
             <div className=' mt-10 grid grid-cols-2 grid-row-2 gap-7'>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
           </div>
           </div>
 
           <div className='mt-10'>
             <h1 className='text-white text-2xl font-medium'>Recommended for You</h1>
             <div className=' mt-10 grid grid-cols-3 grid-row-2 gap-7'>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
-            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'>a</div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
+            <div className='bg-[#1A2633] h-[170px] rounded-xl mastWhiteShadow'></div>
             
           </div>
           </div>
