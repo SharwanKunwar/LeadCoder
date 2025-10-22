@@ -9,7 +9,7 @@ function Dashboard() {
         {/* left div  ------------------------------------------------------------------------------*/}
         <div className='w-[65%] py-10'>
 
-          <div className='w-full h-[30vh] rounded-2xl flex justify-center items-end pb-10 mastWhiteShadow' style={{background: 'linear-gradient(44deg,#3d5c4d,#acb167)'}}>
+          <div className='w-full h-[30vh] rounded-2xl flex justify-center items-end pb-10 mastWhiteShadow' style={{background:'linear-gradient(172deg,#6a8a63,#58299d)'}}>
             <h1 className='text-3xl text-white font-medium'>Welcome back, {user} You are a Code Master</h1>
           </div>
 
@@ -45,8 +45,11 @@ function Dashboard() {
           {/* progress div  */}
           <div className='w-full h-[45vh] rounded-2xl bg-[#1A2633] mastWhiteShadow flex flex-col justify-center items-center py-5 px-10'>
             <h1 className='text-3xl'>Overall Progress</h1>
-            <div className='w-full h-[100%] flex justify-center items-center'>
-              <div className='w-[200px] h-[200px] bg-white rounded-full flex justify-center items-center text-black'>a</div>
+            <div className='w-full h-[100%] flex justify-center items-center relative'>
+              <div className='w-[200px] h-[200px] bg-white rounded-full flex justify-center items-center text-black'>
+                <div className='bg-indigo-400 w-[90%] h-[90%] rounded-full'>
+                </div>
+              </div>
             </div>
             <p>"The secret of getting ahead is getting started."</p>
           </div>

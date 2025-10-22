@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import 'remixicon/fonts/remixicon.css'
+import Profile from '../../Model/Profile';
 
 export default function Navbar() {
     const location = useLocation();
     const currentPath = location.pathname
+    const [openProfile, setOpenProfile] = useState(false);
+    
     
     
 return (
@@ -44,9 +48,16 @@ return (
                         <input type="text" placeholder='Search' className='border-none outline-none'/>
                     </div>
                 </div>
-                <button className="bg-white rounded-full w-[40px] h-[40px] mastWhiteShadow">a</button>
+
+                <button onClick={() => setOpenProfile((prev) => !prev)} className="bg-white rounded-full w-[40px] h-[40px] mastWhiteShadow flex justify-center items-center object-cover" ><img src="/LeadCoder.png" alt="img" /></button>
+
             </div>
         </div>
+
+        {
+            openProfile && ( <Profile open={openProfile} onClose={() => setOpenProfile(false)} /> )
+        }
+
     </div>
 );
 }

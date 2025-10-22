@@ -5,6 +5,7 @@ import ConceptCatalog from "../pages/ConceptCatalog";
 import ConceptDetail from "../pages/ConceptDetail";
 import ProblemSolver from "../pages/ProblemSolver";
 import SolutionAnalysis from "../pages/SolutionAnalysis";
+import Problems from "../pages/Problems";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { index: true, element: <Dashboard /> },
       { path: "concepts", element: <ConceptCatalog />},
       { path: "concepts/:id", element: <ConceptDetail /> },
+      {path:"problems", element: <Problems/>},
       { path: "problem/:id", element: <ProblemSolver /> },
       { path: "solution/:id", element: <SolutionAnalysis /> },
     ],

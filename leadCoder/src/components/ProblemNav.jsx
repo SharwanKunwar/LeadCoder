@@ -1,10 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
-import {useState} from 'react'
 import 'remixicon/fonts/remixicon.css'
 import Profile from '../../Model/Profile';
+import { useState } from 'react';
 
-
-export default function Navbar() {
+function ProblemNav() {
 
     const location = useLocation();
     const currentPath = location.pathname
@@ -12,6 +11,7 @@ export default function Navbar() {
     const [openProfile, setOpenProfile] = useState(false);
 
 return (
+    <>
     <div className=" text-white text-center text-lg ">
         {/* holding left and right div  */}
         <div className=" py-3 h-full  flex justify-between border-b-1 border-gray-400/30  px-15 mx-10">
@@ -47,9 +47,14 @@ return (
 
             </div>
         </div>
+
         {
             openProfile && ( <Profile open={openProfile} onClose={() => setOpenProfile(false)} /> )
         }
+
     </div>
-);
+    </>
+  )
 }
+
+export default ProblemNav
