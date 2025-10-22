@@ -38,7 +38,7 @@ function Problems() {
   return (
     <>
       {/* Concept Buttons */}
-      <div className="bg-[#182430] mx-20 grid grid-cols-10 gap-3 py-4 px-4 rounded-md mastBrightShadow">
+      <div className="bg-[#182430] mx-20 grid grid-cols-10 gap-3 py-4 px-4 rounded-md mastBrightShadow mt-5">
         {concepts.map((concept) => (
           <Button
             key={concept}
@@ -56,8 +56,8 @@ function Problems() {
 
       {/* Problems List */}
       <MainLayout>
-        <div className="h-[70vh]">
-          <div className="bg-[#182430] h-[70vh] overflow-y-scroll no-scrollbar scroll-smooth transition-transform rounded-xl">
+        <div className="h-[70vh] mt-1">
+          <div className="bg-[#182430] h-[70vh] overflow-y-scroll no-scrollbar scroll-smooth transition-transform rounded-xl mastBrightShadow">
             <div className="grid grid-cols-1 gap-5 p-5">
               {filteredProblems.length > 0 ? (
                 filteredProblems.map((problem) => (

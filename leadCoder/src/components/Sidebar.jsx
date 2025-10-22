@@ -23,7 +23,7 @@ function Sidebar() {
   };
 
   return (
-    <div className="bg-[#182430] h-[70vh] rounded-xl grid grid-cols-1 gap-2 py-2 p-5 mastBrightShadow text-white">
+    <div className="bg-[#182430] h-[70vh] rounded-xl grid grid-cols-1 py-5 p-5 mastBrightShadow text-white">
       <div className="h-[10vh] flex flex-col justify-center gap-3">
         <h1 className="font-medium">Find Concepts</h1>
         <div className="bg-[#233648] rounded-lg w-full h-[35px] flex items-center mastBrightShadow">
@@ -50,7 +50,7 @@ function Sidebar() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-3 font-medium py-3">
+      <div className="flex flex-col gap-2 font-medium py-3">
         <h1 className="text-lg font-bold">Difficulty Level</h1>
         <Radio.Group
           onChange={handleDifficultyChange}

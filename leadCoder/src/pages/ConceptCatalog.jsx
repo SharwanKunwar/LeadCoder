@@ -35,7 +35,7 @@ function ConceptCatalog() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 gap-6  h-[58vh]">
           {currentCards.map((concept) => (
             <div
               key={concept.id}
@@ -49,7 +49,7 @@ function ConceptCatalog() {
               </div>
 
               <div>
-                <div className="flex justify-between text-[14px]">
+                <div className="flex justify-between text-[12px]">
                   {concept.category && (
                     <p
                       className={`px-4 py-1 font-bold rounded-full ${
@@ -85,10 +85,9 @@ function ConceptCatalog() {
                 </div>
 
                 <Link to={`/concepts/${concept.id}`}>
-                  <Button className="!bg-sky-400 !border-none w-full mt-3 !font-bold !text-white">
-                    Learn More
-                  </Button>
+                  <Button size="large" className="!bg-indigo-500 !border-none w-full mt-3 !font-medium !text-white hover:!bg-indigo-600 focus:!bg-indigo-700 transition-all duration-300 rounded-lg shadow-md hover:shadow-lg" > Learn More </Button>
                 </Link>
+                
               </div>
             </div>
           ))}
@@ -96,27 +95,14 @@ function ConceptCatalog() {
 
         {/* Pagination */}
         <div className="flex justify-center gap-3 mt-6 text-white">
-          <Button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}>
-            Prev
-          </Button>
+          <Button onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}> Prev </Button>
+          
           {[...Array(totalPages)].map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`w-8 h-8 rounded-md ${
-                currentPage === i + 1 ? "bg-indigo-500" : "bg-gray-400"
-              }`}
-            >
-              {i + 1}
-            </button>
+            <button key={i} onClick={() => setCurrentPage(i + 1)} className={`w-8 h-8 rounded-md ${ currentPage === i + 1 ? "bg-indigo-500" : "bg-gray-400" }`}> {i + 1} </button>
           ))}
-          <Button
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-          >
-            Next
-          </Button>
+
+          <Button onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}>Next</Button>
+          
         </div>
       </>
     </MainLayout>
