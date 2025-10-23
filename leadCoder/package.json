@@ -19,7 +19,8 @@
     "react-router-dom": "^7.9.4",
     "react-select": "^5.10.2",
     "remixicon": "^4.7.0",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.1.14",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
