@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import {useState} from 'react'
 import 'remixicon/fonts/remixicon.css'
 import Profile from '../../Model/Profile';
+import {useProfileStore} from "../../src/store/useProfileStore";
 
 
 export default function Navbar() {
@@ -10,6 +11,9 @@ export default function Navbar() {
     const currentPath = location.pathname
 
     const [openProfile, setOpenProfile] = useState(false);
+
+    const profile = useProfileStore((state) => state.profile);
+    const profileImg = profile?.image || "/LeadCoder.png";
 
 return (
     <div className=" text-white text-center text-lg ">
@@ -43,7 +47,9 @@ return (
                     </ul>
                 </nav>
 
-                <button onClick={() => setOpenProfile((prev) => !prev)} className="bg-white rounded-full w-[40px] h-[40px] mastWhiteShadow flex justify-center items-center object-cover" ><img src="/LeadCoder.png" alt="img" /></button>
+                <button onClick={() => setOpenProfile((prev) => !prev)} className="bg-white rounded-full w-[40px] h-[40px] mastWhiteShadow flex justify-center items-center object-cover" >
+                    <img src={profileImg} alt="Profile" className="w-full h-full object-cover rounded-full" />
+                </button>
 
             </div>
         </div>
