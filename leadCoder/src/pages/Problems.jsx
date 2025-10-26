@@ -6,19 +6,41 @@ import { useFilters } from "../context/FilterContext";
 import { useNavigate } from "react-router-dom";
 
 
-// Problem dataset
 const problemSet = [
-  { id: 1, title: "Marshal's Adventure with Variables", category: "Fundamentals", concept: "Variables", difficulty: "Beginner", status: "completed", question: "What is a variable in programming?", solution: "A variable is a named storage that holds a value which can be changed during program execution." },
-  { id: 2, title: "Loop of Destiny", category: "Fundamentals", concept: "Loops", difficulty: "Intermediate", status: "pending", question: "What is a loop?", solution: "A loop allows repeating a block of code multiple times until a condition is met." },
-  { id: 3, title: "Function Forge", category: "Fundamentals", concept: "Functions", difficulty: "Advanced", status: "completed", question: "What is a function in programming?", solution: "A function is a reusable block of code designed to perform a specific task." },
-  { id: 4, title: "The Array Enigma", category: "Fundamentals", concept: "Arrays", difficulty: "Beginner", status: "pending", question: "What is an array?", solution: "An array is a data structure used to store multiple values of the same type." },
-  { id: 5, title: "The Constant Mystery", category: "Fundamentals", concept: "Constants", difficulty: "Beginner", status: "pending", question: "What is a constant?", solution: "A constant is a fixed value that cannot be altered during program execution." },
-  { id: 6, title: "Conditional Quest", category: "Fundamentals", concept: "Conditionals", difficulty: "Beginner", status: "pending", question: "What is a conditional statement?", solution: "A conditional statement allows executing different code blocks based on a condition." },
-  { id: 7, title: "Looping Legends", category: "Fundamentals", concept: "Loops", difficulty: "Beginner", status: "completed", question: "How does a for loop work?", solution: "A for loop iterates over a range or sequence for a fixed number of times." },
-  { id: 8, title: "String Sorcery", category: "Fundamentals", concept: "Strings", difficulty: "Beginner", status: "pending", question: "What is a string?", solution: "A string is a sequence of characters used to represent text." },
-  { id: 9, title: "Input Odyssey", category: "Fundamentals", concept: "Input/Output", difficulty: "Beginner", status: "pending", question: "How is input handled in most programming languages?", solution: "Input is taken from the user using input functions or streams." },
-  { id: 10, title: "Logic Labyrinth", category: "Fundamentals", concept: "Conditionals", difficulty: "Beginner", status: "completed", question: "Explain logical operators.", solution: "Logical operators combine multiple conditions: AND, OR, and NOT." },
+  {
+  id: 1,
+  title: "Print 10 Even Numbers",
+  category: "Loops",
+  concept: "Loops",
+  difficulty: "Beginner",
+  status: "pending",
+  question: "Write a program to print the first 10 even numbers.",
+  description: 
+  `In this problem, you need to print the first 10 even numbers (2, 4, 6, 8, ... 20). 
+  Even numbers are numbers that can be divided by 2 without any remainder. 
+
+  To solve this:
+    1. You will use a loop (like a 'for' loop) to repeat some code multiple times.
+    2. Start counting from 2 because it's the first even number.
+    3. On each loop iteration, add 2 to get the next even number.
+    4. Print the number to the screen inside the loop.
+
+  Concepts to understand:
+    - Loops: A way to repeat code multiple times automatically.
+    - Even numbers: Numbers divisible by 2 (use "number % 2 === 0" if you want to check).
+    - Incrementing numbers: Change the number step by step to get the next number.
+
+  Example:
+  2, 4, 6, 8, 10, ..., 20 `
+  ,
+  hint: "Remember, even numbers are divisible by 2. You can use a for loop starting from 2.",
+  testCases: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
+  expectedOutput: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"]
+}
+
 ];
+
+
 
 function Problems() {
   const { selectedCategories, selectedDifficulty } = useFilters();
