@@ -1,45 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useProblemStore } from "../store/useProblemStore";
 import MainLayout from "../layouts/MainLayout";
 import { Button, Modal } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { useFilters } from "../context/FilterContext";
 import { useNavigate } from "react-router-dom";
 
-
 const problemSet = [
   {
-  id: 1,
-  title: "Print 10 Even Numbers",
-  category: "Loops",
-  concept: "Loops",
-  difficulty: "Beginner",
-  status: "pending",
-  question: "Write a program to print the first 10 even numbers.",
-  description: 
-  `In this problem, you need to print the first 10 even numbers (2, 4, 6, 8, ... 20). 
-  Even numbers are numbers that can be divided by 2 without any remainder. 
-
-  To solve this:
-    1. You will use a loop (like a 'for' loop) to repeat some code multiple times.
-    2. Start counting from 2 because it's the first even number.
-    3. On each loop iteration, add 2 to get the next even number.
-    4. Print the number to the screen inside the loop.
-
-  Concepts to understand:
-    - Loops: A way to repeat code multiple times automatically.
-    - Even numbers: Numbers divisible by 2 (use "number % 2 === 0" if you want to check).
-    - Incrementing numbers: Change the number step by step to get the next number.
-
-  Example:
-  2, 4, 6, 8, 10, ..., 20 `
-  ,
-  hint: "Remember, even numbers are divisible by 2. You can use a for loop starting from 2.",
-  testCases: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
-  expectedOutput: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"]
-}
-
+    id: 1,
+    title: "Print 10 Even Numbers",
+    category: "Fundamental",
+    concept: "Loops",
+    difficulty: "Beginner",
+    status: "Pending",
+    question: "Write a program to print the first 10 even numbers.",
+    description: `
+In this problem, you need to print the first 10 even numbers (2, 4, 6, 8, ... 20).
+Use a loop and print each even number on a new line.`,
+    testCases: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
+    expectedOutput: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
+  },
+  {
+    id: 2,
+    title: "Print 10 Odd Numbers",
+    category: "Fundamental",
+    concept: "Loops",
+    status: "Pending",
+    difficulty: "Beginner",
+    question: "Write a program to print the first 10 odd numbers.",
+    description: `
+In this problem, you need to print the first 10 odd numbers (1, 3, 5, 7, ... 19).
+Use a loop and print each odd number on a new line.`,
+    testCases: ["1", "3", "5", "7", "9", "11", "13", "15", "17", "19"],
+    expectedOutput: ["1", "3", "5", "7", "9", "11", "13", "15", "17", "19"],
+  },
 ];
-
 
 
 function Problems() {
@@ -49,19 +45,35 @@ function Problems() {
   const [selectedProblem, setSelectedProblem] = useState(null);
   const navigate = useNavigate();
 
-  // Unique concepts for filter buttons
-  const concepts = Array.from(new Set(problemSet.map((p) => p.concept)));
+  const { problems, initializeProblems } = useProblemStore();
 
-  // Apply filters
-  const filteredProblems = problemSet.filter((problem) => {
+  
+  
+  // ✅ Initialize store once
+  useEffect(() => {
+    initializeProblems(problemSet);
+  }, [initializeProblems]);
+  
+  const prob = problems.find(p => p.id === 2);  //check by puting id of problem
+  console.log(prob?.id, prob?.status);
+
+  // ✅ Merge store problems with static problem data
+  const mergedProblems = problemSet.map((p) => {
+    const stored = problems.find((sp) => sp.id === p.id);
+    return stored ? { ...p, status: stored.status } : { ...p, status: "pending" };
+  });
+
+  // Filter logic (same as before) ...
+  const concepts = Array.from(new Set(problemSet.map((p) => p.concept)));
+  const filteredProblems = mergedProblems.filter((problem) => {
     const matchesCategory =
       selectedCategories.length === 0 || selectedCategories.includes(problem.category);
-    const matchesDifficulty = problem.difficulty === selectedDifficulty;
+    const matchesDifficulty =
+      !selectedDifficulty || problem.difficulty === selectedDifficulty;
     const matchesConcept = !selectedConcept || problem.concept === selectedConcept;
     return matchesCategory && matchesDifficulty && matchesConcept;
   });
 
-  // Handle Review or Solve click
   const handleAction = (problem) => {
     if (problem.status === "completed") {
       setSelectedProblem(problem);
@@ -73,7 +85,7 @@ function Problems() {
 
   return (
     <>
-      {/* Concept Filter Buttons */}
+      {/* Filter Buttons */}
       <div className="bg-[#182430] mx-20 grid grid-cols-10 gap-3 py-4 px-4 rounded-md mastBrightShadow mt-5">
         {concepts.map((concept) => (
           <Button
@@ -160,8 +172,8 @@ function Problems() {
             <div>
               <p className="text-lg font-semibold mb-2">Question:</p>
               <p className="text-gray-600 mb-4">{selectedProblem?.question}</p>
-              <p className="text-lg font-semibold mb-2">Solution:</p>
-              <p className="text-gray-600">{selectedProblem?.solution}</p>
+              <p className="text-lg font-semibold mb-2">Description:</p>
+              <p className="text-gray-600">{selectedProblem?.description}</p>
             </div>
           </Modal>
         </div>
