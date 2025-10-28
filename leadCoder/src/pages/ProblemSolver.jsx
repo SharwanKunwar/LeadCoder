@@ -21,6 +21,14 @@ function ProblemSolver() {
         {problem.description && (
           <p className="mt-2 whitespace-pre-line text-neutral-200">{problem.description}</p>
         )}
+        <div className="border my-5 p-2">
+          <h1 className="text-lg">Test cases :</h1>
+          <p>{problem.testCases}</p>
+        </div>
+        <div className="border my-5 p-2">
+          <h1 className="text-lg">Excepted output :</h1>
+          <p>{problem.expectedOutput}</p>
+        </div>
         {problem.hint && (
         <div className="mt-4 p-2 bg-slate-500 rounded">
           <strong>Hint:</strong> <span className="text-neutral-200">{problem.hint}</span>

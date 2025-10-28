@@ -7,19 +7,22 @@ export const useProblemStore = create(
     (set, get) => ({
       problems: [],
 
-      // ✅ Initialize problems (only if empty)
+      // Initialize problems (only if empty)
       initializeProblems: (defaultProblems) => {
         const existing = get().problems;
-        if (existing.length === 0) {
-          const initialized = defaultProblems.map((p) => ({
-            ...p,
-            status: p.status || "pending",
-          }));
-          set({ problems: initialized });
-        }
+        const updatedList = [...existing];
+
+        defaultProblems.forEach((p) => {
+          const exists = existing.some((e) => e.id === p.id);
+          if (!exists) {
+            updatedList.push({ ...p, status: p.status || "pending", code: "" });
+          }
+        });
+
+        set({ problems: updatedList });
       },
 
-      // ✅ Update problem (add if not exist)
+      // Add or update problem (including code)
       addOrUpdateProblem: (problem) =>
         set((state) => {
           const index = state.problems.findIndex((p) => p.id === problem.id);
@@ -28,10 +31,19 @@ export const useProblemStore = create(
             updated[index] = { ...updated[index], ...problem };
             return { problems: updated };
           }
-          return { problems: [...state.problems, problem] };
+          return { problems: [...state.problems, { ...problem, code: "" }] };
         }),
 
-      // ✅ Mark problem as completed
+      // Save code for a problem
+      saveCode: (id, code) =>
+        set((state) => {
+          const updated = state.problems.map((p) =>
+            p.id === id ? { ...p, code } : p
+          );
+          return { problems: updated };
+        }),
+
+      // Mark problem as completed
       markCompleted: (id) =>
         set((state) => {
           const updated = state.problems.map((p) =>

@@ -2,165 +2,105 @@ import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import Select from "react-select";
 import { useProblemStore } from "../store/useProblemStore";
+import { useNavigate } from "react-router-dom";
 
 const CodeEditor = ({ problem }) => {
-  const [language, setLanguage] = useState({
-    value: "javascript",
-    label: "JavaScript",
-  });
-  const [code, setCode] = useState("// here");
-  const [output, setOutput] = useState(""); // actual console output
-  const [testResult, setTestResult] = useState(""); // test case result message
+  const [language, setLanguage] = useState({ value: "javascript", label: "JavaScript" });
+  const [code, setCode] = useState("// Write your code here");
+  const [output, setOutput] = useState("");
+  const [testResult, setTestResult] = useState("");
   const [activeTab, setActiveTab] = useState("Test Cases");
 
-  const { markCompleted } = useProblemStore();
+  const {markCompleted, saveCode} = useProblemStore();
+  const navigate = useNavigate();
 
   const languages = [
-    { 
-      value: "c", 
-      label: "C", 
-      snipt: `#include <stdio.h>
-
-int main() {
-    printf("Hello, World!");
-    return 0;
-}` 
-    },
-    { 
-      value: "javascript", 
-      label: "JavaScript", 
-      snipt: `// JavaScript Initial Code
-console.log("Hello, World!");` 
-    },
-    { 
-      value: "python", 
-      label: "Python", 
-      snipt: `# Python Initial Code
-print("Hello, World!")` 
-    },
-    { 
-      value: "java", 
-      label: "Java", 
-      snipt: `// Java Initial Code
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}` 
-    }
+    { value: "javascript", label: "JavaScript", snipt: "// JS code" },
+    { value: "c", label: "C", snipt: "// C code" },
+    { value: "python", label: "Python", snipt: "# Python code" },
+    { value: "java", label: "Java", snipt: "// Java code" },
   ];
 
   const runCode = () => {
+    if (language.value !== "javascript") {
+      setOutput("⚠️ Only JavaScript execution is supported.");
+      setTestResult("");
+      return;
+    }
+
     try {
-      if (language.value === "javascript") {
-        let logs = [];
-        const originalConsole = console.log;
+      let logs = [];
+      const originalConsole = console.log;
+      console.log = (...args) => logs.push(args.join(" "));
+      new Function(code)();
+      console.log = originalConsole;
 
-        console.log = (...args) => logs.push(args.join(" "));
-        new Function(code)();
-        console.log = originalConsole;
+      const actual = logs.map((l) => l.trim());
+      setOutput(actual.join("\n"));
 
-        const actualOutput = logs.join("\n");
-        setOutput(actualOutput); // show actual output in Console tab
-
-        // Check against test cases
-        if (problem.testCases && problem.testCases.length > 0) {
-          const expected = problem.expectedOutput.join("\n").trim();
-          const result = actualOutput.trim();
-
-          if (result === expected) {
-            setTestResult("✅ All test cases passed!");
-          } else {
-            setTestResult("❌ Some test cases failed.");
-          }
-        } else {
-          setTestResult("");
-        }
+      if (problem.expectedOutput && problem.expectedOutput.length > 0) {
+        const results = problem.expectedOutput.map((exp, idx) => {
+          if (actual[idx] === exp) return `✅ Test Case ${idx + 1} Passed`;
+          else return `❌ Test Case ${idx + 1} Failed: Expected "${exp}", got "${actual[idx] || "undefined"}"`;
+        });
+        setTestResult(results.join("\n"));
       } else {
-        setOutput("Running code for this language is not implemented yet.");
-        setTestResult("");
+        setTestResult("⚠️ No test cases defined.");
       }
     } catch (err) {
       setOutput(err.message);
-      setTestResult("❌ Some test cases failed.");
+      setTestResult("❌ Code execution failed.");
     }
   };
 
   const handleSubmit = () => {
-  if (testResult.includes("✅")) {
-    markCompleted(problem.id);
-    alert("🎉 Problem marked as completed!");
-  } else {
-    alert("⚠️ Please make sure all test cases pass before submitting.");
-  }
-};
+    if (!testResult) {
+      alert("⚠️ Please run your code first.");
+      return;
+    }
 
+    if (testResult.includes("❌")) {
+      alert("⚠️ Some test cases failed. Please fix them before submitting.");
+    } else {
+      markCompleted(problem.id);
+      saveCode(problem.id, code); // ✅ store the code
+      alert(`🎉 All test cases passed! Problem marked as completed!\n\nYour Code:\n${code}`);
+      navigate(-1); // Go back to previous page
+    }
+  };
 
   return (
     <div className="flex flex-col h-full">
       {/* Top Controls */}
-      <div className="flex items-center justify-between bg-gray-900/50 backdrop-blur-2xl p-5 rounded-t-md mastBrightShadow z-10">
-        <Select
-          options={languages}
-          value={language}
-          onChange={setLanguage}
-          className="w-40 text-black bg-gray-400"
-        />
+      <div className="flex items-center justify-between bg-gray-900/50 p-5 rounded-t-md">
+        <Select options={languages} value={language} onChange={setLanguage} className="w-40 text-black bg-gray-400" />
         <div>
-          <button
-            onClick={runCode}
-            className="bg-green-500 text-white px-4 py-1 rounded mr-3 hover:bg-green-600"
-          >
-            Run Code
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
-          >
-            Submit
-          </button>
+          <button onClick={runCode} className="bg-green-500 text-white px-4 py-1 rounded mr-3">Run Code</button>
+          <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-1 rounded">Submit</button>
         </div>
       </div>
 
       {/* Editor */}
-      <div className="flex-1 bg-white/30 backdrop-blur-2xl">
+      <div className="flex-1">
         <Editor
           height="100%"
           language={language.value}
-          value={language.snipt}
-          onChange={(value) => setCode(value)}
+          value={code}
+          onChange={setCode}
           theme="vs-dark"
           options={{ fontSize: 14, minimap: { enabled: false } }}
         />
       </div>
 
       {/* Bottom Tabs */}
-      <div className="h-1/3 bg-gray-900/50 backdrop-blur-2xl text-white flex flex-col mb-5 rounded-b-md mastBrightShadow">
+      <div className="h-1/3 bg-gray-900/50 text-white flex flex-col mb-5 rounded-b-md">
         <div className="flex border-b border-gray-700">
           {["Test Cases", "Console"].map((tab) => (
-            <div
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`p-2 cursor-pointer ${
-                activeTab === tab ? "border-b-2 border-green-500" : ""
-              }`}
-            >
-              {tab}
-            </div>
+            <div key={tab} onClick={() => setActiveTab(tab)} className={`p-2 cursor-pointer ${activeTab === tab ? "border-b-2 border-green-500" : ""}`}>{tab}</div>
           ))}
         </div>
-
-        <div className="p-3 overflow-y-auto flex-1 bg-black/30 backdrop-blur-2xl text-green-400 font-mono rounded-b-md">
-          {activeTab === "Console" ? (
-            <pre>{output || "Console output will appear here..."}</pre>
-          ) : (
-            <div>
-              <pre>
-                {problem.testCases?.join(" ") || "Test cases will appear here..."}
-              </pre>
-              {testResult && <p className="mt-2">{testResult}</p>}
-            </div>
-          )}
+        <div className="p-3 overflow-y-auto flex-1 bg-black/30 text-green-400 font-mono">
+          {activeTab === "Console" ? <pre>{output || "Console output will appear here..."}</pre> : <pre>{testResult || "Run your code to see test results..."}</pre>}
         </div>
       </div>
     </div>

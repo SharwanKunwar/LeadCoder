@@ -5,37 +5,10 @@ import { Button, Modal } from "antd";
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { useFilters } from "../context/FilterContext";
 import { useNavigate } from "react-router-dom";
+import problemSet from "../data/problemSet.json";
 
-const problemSet = [
-  {
-    id: 1,
-    title: "Print 10 Even Numbers",
-    category: "Fundamental",
-    concept: "Loops",
-    difficulty: "Beginner",
-    status: "Pending",
-    question: "Write a program to print the first 10 even numbers.",
-    description: `
-In this problem, you need to print the first 10 even numbers (2, 4, 6, 8, ... 20).
-Use a loop and print each even number on a new line.`,
-    testCases: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
-    expectedOutput: ["2", "4", "6", "8", "10", "12", "14", "16", "18", "20"],
-  },
-  {
-    id: 2,
-    title: "Print 10 Odd Numbers",
-    category: "Fundamental",
-    concept: "Loops",
-    status: "Pending",
-    difficulty: "Beginner",
-    question: "Write a program to print the first 10 odd numbers.",
-    description: `
-In this problem, you need to print the first 10 odd numbers (1, 3, 5, 7, ... 19).
-Use a loop and print each odd number on a new line.`,
-    testCases: ["1", "3", "5", "7", "9", "11", "13", "15", "17", "19"],
-    expectedOutput: ["1", "3", "5", "7", "9", "11", "13", "15", "17", "19"],
-  },
-];
+
+
 
 
 function Problems() {
@@ -45,16 +18,20 @@ function Problems() {
   const [selectedProblem, setSelectedProblem] = useState(null);
   const navigate = useNavigate();
 
-  const { problems, initializeProblems } = useProblemStore();
-
+  const { problems,getProblemById, initializeProblems } = useProblemStore();
+  const savedCode = selectedProblem ? getProblemById(selectedProblem.id)?.code : "";
   
+
+  console.log(problemSet);
+
   
   // ✅ Initialize store once
   useEffect(() => {
     initializeProblems(problemSet);
-  }, [initializeProblems]);
+  }, [problemSet]);
+
   
-  const prob = problems.find(p => p.id === 2);  //check by puting id of problem
+  const prob = problems.find(p => p.id === 3);  //check by puting id of problem
   console.log(prob?.id, prob?.status);
 
   // ✅ Merge store problems with static problem data
@@ -159,23 +136,37 @@ function Problems() {
 
           {/* Review Modal */}
           <Modal
-            title={selectedProblem?.title}
-            open={openModal}
-            onCancel={() => setOpenModal(false)}
-            footer={[
-              <Button key="close" onClick={() => setOpenModal(false)}>
-                Close
-              </Button>,
-            ]}
-            centered
-          >
-            <div>
-              <p className="text-lg font-semibold mb-2">Question:</p>
-              <p className="text-gray-600 mb-4">{selectedProblem?.question}</p>
-              <p className="text-lg font-semibold mb-2">Description:</p>
-              <p className="text-gray-600">{selectedProblem?.description}</p>
-            </div>
-          </Modal>
+  title={selectedProblem?.title}
+  open={openModal}
+  onCancel={() => setOpenModal(false)}
+  footer={[
+    <Button key="close" onClick={() => setOpenModal(false)}>
+      Close
+    </Button>,
+  ]}
+  centered
+>
+  <div>
+    <p className="text-lg font-semibold mb-2">Question:</p>
+    <p className="text-gray-600 mb-4">{selectedProblem?.question}</p>
+
+    <p className="text-lg font-semibold mb-2">Description:</p>
+    <p className="text-gray-600 mb-4">{selectedProblem?.description}</p>
+
+    <p className="text-lg font-semibold mb-2">Solution Code:</p>
+    {selectedProblem ? (
+      getProblemById(selectedProblem.id)?.code ? (
+        <pre className="bg-gray-800 text-green-400 p-2 rounded">
+          {getProblemById(selectedProblem.id).code}
+        </pre>
+      ) : (
+        <p className="text-gray-500">No code saved yet.</p>
+      )
+    ) : null}
+  </div>
+</Modal>
+
+
         </div>
       </MainLayout>
     </>
